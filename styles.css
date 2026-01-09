@@ -1,0 +1,57 @@
+#chart-legend {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dashboard {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  border: 1px solid #e5e5e5b6;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #e5e5e5;
+}
+
+tbody td {
+  padding: 0.6rem 0.75rem;
+  vertical-align: top;
+  border: 1px solid #e5e5e5;
+}
+
+tbody tr:hover {
+  background-color: #fafafa;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  font-size: 14px;
+  color: #111;
+}

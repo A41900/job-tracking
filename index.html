@@ -2,12 +2,33 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    />
     <title>Job Tracker</title>
   </head>
-  <body>
-    <h1>Candidaturas</h1>
 
-    <div id="app"></div>
+  <body>
+    <aside class="sidebar">
+      <nav>
+        <a href="#">Overview</a>
+        <a href="#">Applications</a>
+        <a href="#" class="disabled">Calendar</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header>
+        <h1>Overview</h1>
+      </header>
+
+      <section class="dashboard">
+        <div id="status-chart"></div>
+        <div id="applications-list"></div>
+      </section>
+    </main>
 
     <script type="module" src="./main.js"></script>
   </body>
