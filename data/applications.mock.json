@@ -1,0 +1,156 @@
+[
+  {
+    "company": "NovaTech Labs",
+    "url": "https://example.com/jobs/backend-intern",
+
+    "position": "Backend Developer",
+    "role": "Backend development for internal tools and APIs",
+    "area": ["Backend", "APIs"],
+    "skills": ["Python", "REST", "Databases", "Git"],
+
+    "seniority": "intern",
+    "employmentType": "full_time",
+
+    "applicationLanguage": "English",
+    "location": "Lisbon, Portugal",
+    "remoteType": "hybrid",
+
+    "source": "LinkedIn",
+    "platform": "Company Website",
+    "submissionMethod": "company_form",
+
+    "appliedAt": "2026-01-02",
+    "status": "under_review",
+    "confirmationReceived": true,
+
+    "notes": [
+      "Focus on learning backend fundamentals in a small engineering team",
+      "Exposure to APIs and internal tooling",
+      "Mock data for demo purposes"
+    ]
+  },
+
+  {
+    "company": "CloudForge",
+    "url": "https://example.com/jobs/devops-junior",
+
+    "position": "DevOps Engineer",
+    "role": "Support cloud infrastructure and CI/CD pipelines",
+    "area": ["DevOps", "Cloud"],
+    "skills": ["CI/CD", "Docker", "Linux", "Git"],
+
+    "seniority": "junior",
+    "employmentType": "full_time",
+
+    "applicationLanguage": "English",
+    "location": "Remote",
+    "remoteType": "remote",
+
+    "source": "Website",
+    "platform": "Company Website",
+    "submissionMethod": "company_form",
+
+    "appliedAt": "2026-01-04",
+    "status": "applied",
+    "confirmationReceived": true,
+
+    "notes": [
+      "Junior-level role focused on infrastructure automation",
+      "Remote-first company",
+      "Mock data for demo purposes"
+    ]
+  },
+
+  {
+    "company": "DataSprout",
+    "url": "https://example.com/jobs/frontend",
+
+    "position": "Frontend Developer",
+    "role": "Build and maintain user-facing web interfaces",
+    "area": ["Frontend", "Web"],
+    "skills": ["JavaScript", "HTML", "CSS"],
+
+    "seniority": "junior",
+    "employmentType": "contract",
+
+    "applicationLanguage": "English",
+    "location": "Berlin, Germany",
+    "remoteType": "onsite",
+
+    "source": "Referral",
+    "platform": "Email",
+    "submissionMethod": "email",
+
+    "appliedAt": "2026-01-05",
+    "status": "interview",
+    "confirmationReceived": true,
+
+    "notes": [
+      "Short-term contract",
+      "First interview scheduled",
+      "Mock data for demo purposes"
+    ]
+  },
+
+  {
+    "company": "GreenGrid Systems",
+    "url": "https://example.com/jobs/systems-engineer",
+
+    "position": "Systems Engineer",
+    "role": "Work on monitoring and optimization of distributed systems",
+    "area": ["Systems", "Infrastructure"],
+    "skills": ["Linux", "Monitoring", "Scripting"],
+
+    "seniority": "mid",
+    "employmentType": "full_time",
+
+    "applicationLanguage": "English",
+    "location": "Amsterdam, Netherlands",
+    "remoteType": "hybrid",
+
+    "source": "LinkedIn",
+    "platform": "LinkedIn",
+    "submissionMethod": "linkedin_easy_apply",
+
+    "appliedAt": "2026-01-01",
+    "status": "rejected",
+    "confirmationReceived": true,
+
+    "notes": [
+      "Role required more experience with distributed systems",
+      "Received rejection after initial screening",
+      "Mock data for demo purposes"
+    ]
+  },
+
+  {
+    "company": "PixelWave Studio",
+    "url": "https://example.com/jobs/fullstack",
+
+    "position": "Fullstack Developer",
+    "role": "Develop features across frontend and backend",
+    "area": ["Frontend", "Backend"],
+    "skills": ["JavaScript", "Node.js", "SQL"],
+
+    "seniority": "senior",
+    "employmentType": "freelance",
+
+    "applicationLanguage": "English",
+    "location": "Remote",
+    "remoteType": "remote",
+
+    "source": "Other",
+    "platform": "Freelance Platform",
+    "submissionMethod": "referral",
+
+    "appliedAt": "2025-12-28",
+    "status": "offer",
+    "confirmationReceived": true,
+
+    "notes": [
+      "Freelance collaboration for a specific project",
+      "Offer received after technical discussion",
+      "Mock data for demo purposes"
+    ]
+  }
+]

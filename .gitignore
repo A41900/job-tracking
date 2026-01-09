@@ -1,0 +1,5 @@
+# dados reais (privados)
+data/applications.real.json
+
+# macOS
+.DS_Store
