@@ -6,11 +6,13 @@ import {
   renderStatusChart,
 } from "./ui/render.js";
 
+let currentViewMode = "table";
+
 const viewRadios = document.querySelectorAll('input[name="view"]');
 viewRadios.forEach((radio) => {
   radio.addEventListener("change", () => {
-    const view = radio.value;
-    renderApplications(getApplications(), view);
+    currentViewMode = radio.value;
+    renderApplications(getApplications(), currentViewMode);
   });
 });
 
@@ -18,9 +20,6 @@ await initStore();
 renderApplications(getApplications(), "cards");
 renderStatusChart(getApplications());
 renderButtons(getApplications());
-
-const viewMode = document.getElementById("view-toggle");
-viewMode.value;
 
 const filterBtn = document.getElementById("filterBtn");
 filterBtn.addEventListener("click", () => {
