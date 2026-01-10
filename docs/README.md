@@ -8,12 +8,16 @@ This project started as a small job application tracker, but it is designed as a
 
 For now, this repository contains only the job tracking module. The scope is intentionally limited to avoid overengineering.
 
-# **Live demo:** https://A41900.github.io/job-tracking
+### **Live demo:** https://A41900.github.io/job-tracking (frontend only)
+
+---
 
 ## Project overview
 
-The project stores job applications using a structured data model and renders them in the browser.  
-It follows a simple separation of concerns between data, logic, and UI.
+The project manages job applications using a structured data model and renders them in the browser.  
+A local backend API built with Node.js and Express is responsible for creating and retrieving applications, while the frontend consumes the API to display and update the data.
+
+Due to GitHub Pages limitations, the public demo runs with mock data only. This allows the interface and interaction patterns to be explored publicly, while keeping the real backend and personal data local.
 
 The architecture is deliberately minimal. More detailed information such as project structure, design decisions, schema evolution, and future plans is documented in the devlog.
 

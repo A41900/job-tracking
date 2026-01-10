@@ -72,3 +72,9 @@ A similar issue appeared with viewMode. Treating layout as a “mode” suggeste
 Another key realization followed. Toggling layout is not rendering. Early versions of the layout logic directly called renderApplications and accessed the store, which tightly coupled UI controls to rendering and data access.
 
 The final structure emerged naturally from this. A small UI controller became the single place where state, data, filtering and rendering meet, through a single updateUI function. uiLayout and uiFilter now only read from the DOM and express intent by calling controller functions. main.js was reduced to wiring everything together and triggering the first render.
+
+---
+
+## Phase 6 - Introducing a backend
+
+At this stage, a backend was introduced as a natural extension of the existing model. A small Node.js and Express API was added to handle the creation and retrieval of job applications, backed by an in-memory store. This allowed the frontend to shift from “owning” the data to consuming it, making the flow closer to a real-world application while keeping complexity intentionally low.
