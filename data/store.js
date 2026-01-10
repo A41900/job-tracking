@@ -53,6 +53,11 @@ applications = data.map((app) => ({
 }));
 */
 
+export async function getApplicationsNew() {
+  const res = await fetch("http://localhost:3000/api/applications");
+  return await res.json();
+}
+
 // --- leitura ---
 export function getApplications() {
   return applications;

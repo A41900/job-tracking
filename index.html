@@ -20,14 +20,72 @@
     </aside>
 
     <main class="main">
-      <header>
-        <h1>Overview</h1>
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1>Overview</h1>
+          <button id="add-application-btn">Add application</button>
+        </div>
+
+        <div class="topbar-right">
+          <div class="user-menu">
+            <button class="user-trigger" aria-haspopup="true">
+              <img src="avatar.png" alt="User avatar" />
+            </button>
+
+            <div class="user-dropdown hidden">
+              <a href="#">Profile</a>
+              <a href="#">Settings</a>
+              <a href="#">Logout</a>
+            </div>
+          </div>
+        </div>
       </header>
 
       <section class="dashboard">
+        <div class="view-toggle" role="radiogroup" aria-label="View mode">
+          <label class="toggle-btn">
+            <input type="radio" name="view" value="cards" checked />
+            ⬜ Cards
+          </label>
+
+          <label class="toggle-btn">
+            <input type="radio" name="view" value="table" />
+            ☰ Table
+          </label>
+        </div>
+        <div class="filters">
+          Filters:
+          <select id="filter-status">
+            <option value="" disabled selected hidden>Status</option>
+            <option value="applied">Applied</option>
+            <option value="under_review">Under review</option>
+            <option value="interview">Interview</option>
+            <option value="rejected">Rejected</option>
+          </select>
+
+          <select id="filter-remote">
+            <option value="" disabled selected hidden>Type</option>
+            <option value="remote">Remote</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="onsite">Onsite</option>
+          </select>
+
+          <select id="filter-position">
+            <option value="" disabled selected hidden>Position</option>
+          </select>
+
+          <select id="filter-company">
+            <option value="" disabled selected hidden>Company</option>
+          </select>
+
+          <button id="filterBtn">Filter</button>
+          <button id="clearBtn">Clear</button>
+        </div>
         <div id="status-chart"></div>
-        <div id="applications-list"></div>
+        <div id="container-table"></div>
+        <div id="container-cards"></div>
       </section>
+      <section id="modal-root"></section>
     </main>
 
     <script type="module" src="./main.js"></script>
