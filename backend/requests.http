@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:3000
+@token = Bearer TEST_TOKEN
+
+### pedido para criar 1 candidatura
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "company": "Google",
+  "role": "Frontend Developer",
+  "url": "https://careers.google.com"
+}
+
+### pedir uma candidatura
+GET {{baseUrl}}/applications
