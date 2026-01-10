@@ -227,7 +227,7 @@ export function renderButtons(apps) {
 
   apps.forEach((element) => {
     if (!btnsPos.includes(element.position)) btnsPos.push(element.position);
-    if (!btnsPos.includes(element.company)) btnsComp.push(element.company);
+    if (!btnsComp.includes(element.company)) btnsComp.push(element.company);
   });
 
   const pos = document.getElementById("filter-position");

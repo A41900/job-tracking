@@ -1,5 +1,5 @@
 /*
-📍 Persistência em memória
+Persistência em memória
 
 Responsabilidade:
 - Guardar estado da aplicação (job applications, users, tokens, etc.)

@@ -60,3 +60,15 @@ Filtering and interaction are being treated as part of the design process rather
 Backend development and server-side persistence are intentionally postponed at this stage. The priority is to test the data model and interface together, and only introduce a backend once the interaction patterns and requirements are clear.
 
 ---
+
+## Phase 5
+
+At this point, I decided to do a refactor on purpose. The application was working, but I already knew the main.js file was handling too much at once. It was responsible for initializing data, managing UI state, reacting to user input, applying filters and triggering renders. Even though nothing was technically broken, the mental overhead was growing and the structure no longer felt sustainable.
+
+The first step was introducing clearer boundaries, starting with the idea of a viewMode and separating logic into state and controllers. This reduced some noise in main.js, but it also exposed a deeper issue: state was starting to duplicate logic that already existed elsewhere, especially around filter structure. That clarified an important rule — state should only store values, not create or define domain structures.
+
+A similar issue appeared with viewMode. Treating layout as a “mode” suggested application state, when in reality it was just a presentation choice: the same data rendered in different ways. This led to reframing viewMode as layout and removing defaults and initialization from state entirely.
+
+Another key realization followed. Toggling layout is not rendering. Early versions of the layout logic directly called renderApplications and accessed the store, which tightly coupled UI controls to rendering and data access.
+
+The final structure emerged naturally from this. A small UI controller became the single place where state, data, filtering and rendering meet, through a single updateUI function. uiLayout and uiFilter now only read from the DOM and express intent by calling controller functions. main.js was reduced to wiring everything together and triggering the first render.
