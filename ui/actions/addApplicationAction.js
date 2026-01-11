@@ -1,6 +1,6 @@
 import { createApplication } from "../../api/applicationsApi.js";
 import { addApplication } from "../../store/applicationsStore.js";
-import { onApplicationCreated } from "./uiController.js";
+import { onApplicationCreated } from "../uiController.js";
 
 export function initAddApplicationAction() {
   const addApplicationBtn = document.getElementById("add-application-btn");
