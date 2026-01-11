@@ -1,6 +1,6 @@
 import { createApplication } from "../../api/applicationsApi.js";
 import { addApplication } from "../../store/applicationsStore.js";
-import { notifyApplicationCreated } from "../uiController.js";
+import { onApplicationCreated } from "./uiController.js";
 
 export function initAddApplicationAction() {
   const addApplicationBtn = document.getElementById("add-application-btn");
@@ -59,7 +59,7 @@ async function onSubmit(e) {
     const newApplication = await createApplication({ company, role, url });
 
     addApplication(newApplication);
-    notifyApplicationCreated();
+    onApplicationCreated();
     closeModal();
   } catch (err) {
     console.error("Erro ao criar candidatura:", err);

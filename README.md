@@ -1,3 +1,5 @@
+<div align="justify">
+
 # Job Tracking
 
 I decided to build this project out of a personal need to organize and keep track of job applications.
@@ -26,4 +28,6 @@ The architecture is deliberately minimal. More detailed information such as proj
 ## Author
 
 Beatriz Andrade  
-Developed as a personal learning project
+Software Engineer Student
+
+</div>
