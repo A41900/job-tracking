@@ -10,7 +10,7 @@ await initStore();
 renderButtons(getApplications());
 initFilterUI();
 setLayoutListeners();
-initAddApplicationAction();
+//initAddApplicationAction();
 
 updateUI();
 
