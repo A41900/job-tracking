@@ -98,4 +98,9 @@ As a result, main.js was reduced to a predictable bootstrap file. The UI follows
 DOM → Inputs / Actions → uiController → render.
 This structure reduces cognitive load, improves readability, and remains proportional and sustainable for a solo project, with all decisions being explicit, conscious, and reversible.
 
+> **Deployment note:**  
+> During deployment to GitHub Pages, a runtime error occurred due to a case-sensitivity mismatch in a frontend module filename (`applicationsAPI.js` vs `applicationsApi.js`). This issue did not appear in local development on macOS, but caused a 404 error in production on GitHub Pages (Linux).
+>
+> The fix involved normalizing filename casing and committing the change explicitly using `git mv`, reinforcing the importance of accounting for filesystem differences between development and deployment environments.
+
 </div>
