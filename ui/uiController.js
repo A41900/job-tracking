@@ -1,9 +1,22 @@
-import { uiState } from "./uiState.js";
-import { getApplications } from "../data/store.js";
-import { renderApplications } from "./uiRender.js";
-import { createEmptyFilters } from "../filter/filter.js";
-import { applyFilters } from "../filter/filter.js";
-import { renderStatusChart } from "./uiRender.js";
+//import { uiState } from "./uiState.js";
+import { getApplications } from "../store/applicationsStore.js";
+import { renderApplications } from "./render/uiRender.js";
+import { applyFilters } from "../logic/applicationFilters.js";
+import { renderStatusChart } from "./render/uiRender.js";
+
+const uiState = {
+  layout: null,
+  filters: createEmptyFilters(),
+};
+
+function createEmptyFilters() {
+  return {
+    status: [],
+    remoteType: [],
+    position: [],
+    company: [],
+  };
+}
 
 export function updateUI() {
   const apps = applyFilters(getApplications(), uiState.filters);
@@ -23,5 +36,9 @@ export function setFilters(filters) {
 
 export function resetFilters() {
   uiState.filters = createEmptyFilters();
+  updateUI();
+}
+
+export function onApplicationCreated() {
   updateUI();
 }

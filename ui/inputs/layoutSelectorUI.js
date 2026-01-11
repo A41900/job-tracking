@@ -1,4 +1,4 @@
-import { setLayout } from "./uiController.js";
+import { setLayout } from "../uiController.js";
 
 export function setLayoutListeners() {
   const radios = document.querySelectorAll('input[name="view"]');

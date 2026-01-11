@@ -1,0 +1,59 @@
+const addApplicationBtn = document.getElementById("add-application-btn");
+addApplicationBtn.addEventListener("click", () => {
+  openAddApplicationModal();
+});
+
+const modalRoot = document.getElementById("modal-root");
+function openAddApplicationModal() {
+  modalRoot.innerHTML = `
+    <div class="modal">
+      <form id="add-application-form">
+        <input id="company" placeholder="Company" required />
+        <input id="role" placeholder="Role" required />
+        <input id="url" placeholder="URL" />
+
+        <button type="submit">Add</button>
+        <button type="button" id="close-modal">Cancel</button>
+      </form>
+    </div>
+  `;
+
+  wireAddApplicationForm();
+}
+
+function wireAddApplicationForm() {
+  const form = document.getElementById("add-application-form");
+  const closeBtn = document.getElementById("close-modal");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const company = document.getElementById("company").value;
+    const role = document.getElementById("role").value;
+    const url = document.getElementById("url").value;
+
+    try {
+      const response = await fetch("http://localhost:3000/applications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ company, role, url }),
+      });
+
+      const newApplication = await response.json();
+
+      addApplication(newApplication);
+
+      closeModal();
+    } catch (err) {
+      console.error("Erro no fetch:", err);
+      alert("Erro ao criar candidatura");
+    }
+  });
+
+  function closeModal() {
+    const modalRoot = document.getElementById("modal-root");
+    modalRoot.innerHTML = "";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+}

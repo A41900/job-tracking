@@ -1,3 +1,5 @@
+<div align="justify">
+
 # Devlog — Job Tracking
 
 This document records the reasoning, decisions, and trade-offs made while developing the Job Tracking project.
@@ -61,7 +63,7 @@ Backend development and server-side persistence are intentionally postponed at t
 
 ---
 
-## Phase 5
+## Phase 5 - Intentional Refactor and Responsibility Boundaries
 
 At this point, I decided to do a refactor on purpose. The application was working, but I already knew the main.js file was handling too much at once. It was responsible for initializing data, managing UI state, reacting to user input, applying filters and triggering renders. Even though nothing was technically broken, the mental overhead was growing and the structure no longer felt sustainable.
 
@@ -78,3 +80,22 @@ The final structure emerged naturally from this. A small UI controller became th
 ## Phase 6 - Introducing a backend
 
 At this stage, a backend was introduced as a natural extension of the existing model. A small Node.js and Express API was added to handle the creation and retrieval of job applications, backed by an in-memory store. This allowed the frontend to shift from “owning” the data to consuming it, making the flow closer to a real-world application while keeping complexity intentionally low.
+
+---
+
+## Phase 7 — Structural refactor after backend introduction
+
+The backend was introduced in a deliberately pragmatic way. At an early stage, the logic for creating applications (fetching, minimal validation, and inserting into local state) was temporarily placed directly in main.js. This was a conscious decision aimed at quickly validating the backend integration and confirming that the end-to-end flow worked before investing in structural refactoring.
+Once this validation point was reached, it became clear that it was the right moment to pause and reorganize. Not because the code had become unmanageable, but because a coherent structure already existed and the natural next step was to align the implementation with that structure.
+
+The uiController, which already acted as the central UI decision point, was extended to explicitly own the UI state (layout and filters). The former uiState.js module was removed, as this state was not shared, observed, or consumed by any other part of the system. Consolidating the state reduced mental indirection and reinforced the controller’s role as the coordinator between data and render.
+Input-related modules (filterFromUI, layoutSelectorUI) were clearly delimited. They read from the DOM, listen to user events, and forward user intent to the uiController, without creating state, applying logic, or triggering UI updates directly. They function as purely reactive layers.
+
+For more complex interaction flows, such as “Add application”, the concept of Actions was introduced. The addApplicationAction.js module encapsulates the full interaction flow: opening and closing a modal, validating form input, calling the API, updating the local store, and explicitly triggering a UI refresh via the uiController. In the current implementation, the modal is fully managed inside the Action itself and behaves as a self-contained UI unit, rather than being mediated by the controller.
+
+In parallel, the separation between api/, store/, and logic/ was reinforced: HTTP communication, local state management, and pure business rules live in distinct layers.
+As a result, main.js was reduced to a predictable bootstrap file. The UI follows a clear unidirectional flow:
+DOM → Inputs / Actions → uiController → render.
+This structure reduces cognitive load, improves readability, and remains proportional and sustainable for a solo project, with all decisions being explicit, conscious, and reversible.
+
+</div>

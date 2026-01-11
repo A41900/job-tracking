@@ -1,16 +1,6 @@
 /*
 Persistência em memória
 
-Responsabilidade:
-- Guardar estado da aplicação (job applications, users, tokens, etc.)
-- Fornecer operações básicas de acesso aos dados (CRUD)
-
-Características:
-- Usa estruturas simples (arrays / maps)
-- Gera IDs quando necessário
-- Não contém lógica de negócio
-- Não conhece UI nem HTTP
-
 Nota:
 Este módulo será substituído por uma camada de persistência real
 (API / Base de Dados) sem impacto no resto do sistema.
@@ -33,25 +23,6 @@ export async function initStore() {
     id: nextId++,
   }));
 }
-
-/*
-applications = data.map((app) => ({
-  id: nextId++,
-  company: app.company,
-  role: app.role,
-  area: app.area,
-  type: app.type,
-  location: app.location,
-  remoteType: app.remoteType,
-  source: app.source,
-  platform: app.platform,
-  appliedAt: app.appliedAt,
-  status: app.status,
-  confirmation: app.confirmation,
-  highlights: app.highlights,
-  notes: app.notes,
-}));
-*/
 
 export async function getApplicationsNew() {
   const res = await fetch("http://localhost:3000/api/applications");
