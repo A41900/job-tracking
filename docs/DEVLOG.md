@@ -116,4 +116,11 @@ This separation ensures predictable behavior across environments while keeping t
 > **Deployment note:**  
 > VSCode’s Live Server always serves the workspace root and cannot be scoped to a subfolder. To >accurately simulate static hosting and ensure predictable module resolution, frontend >development and testing switched to a dedicated static server (npx serve).
 
+---
+
+## Author
+
+Beatriz Andrade  
+Software Engineering Student
+
 </div>

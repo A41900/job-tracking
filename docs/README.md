@@ -10,7 +10,7 @@ This project started as a small job application tracker, but it is designed as a
 
 For now, this repository contains only the job tracking module. The scope is intentionally limited to avoid overengineering.
 
-### **Live demo:** https://bea-job-track.netlify.app/ (frontend only)
+### **Live demo:** [job-tracking](https://bea-job-track.netlify.app) **_(frontend only)_**
 
 ---
 
@@ -28,6 +28,7 @@ The architecture is deliberately minimal. More detailed information such as proj
 ## Author
 
 Beatriz Andrade  
-Software Engineer Student
+Software Engineering Student  
+[Portfolio](https://a41900.github.io)
 
 </div>
