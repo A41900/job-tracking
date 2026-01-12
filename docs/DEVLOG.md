@@ -103,4 +103,17 @@ This structure reduces cognitive load, improves readability, and remains proport
 >
 > The fix involved normalizing filename casing and committing the change explicitly using `git mv`, reinforcing the importance of accounting for filesystem differences between development and deployment environments.
 
+---
+
+## Phase 8 — Frontend isolation and data source alignment
+
+During this phase, the frontend was fully isolated into a dedicated frontend/ directory and aligned with real static hosting constraints. At the same time, data ownership was clarified: real application data was moved to the backend, while the frontend now operates exclusively with mock data for static deployments.
+
+A single explicit flag (USE_BACKEND) was introduced in applicationsApi.js to control the data source. When enabled, the backend becomes the source of truth; when disabled, the frontend runs entirely in static mode using mock data, with a fallback mechanism for creating applications.
+
+This separation ensures predictable behavior across environments while keeping the frontend deployable on GitHub Pages.
+
+> **Deployment note:**  
+> VSCode’s Live Server always serves the workspace root and cannot be scoped to a subfolder. To >accurately simulate static hosting and ensure predictable module resolution, frontend >development and testing switched to a dedicated static server (npx serve).
+
 </div>

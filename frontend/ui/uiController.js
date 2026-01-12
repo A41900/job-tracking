@@ -1,6 +1,6 @@
 import { getApplications } from "../store/applicationsStore.js";
 import { renderApplications } from "./render/uiRender.js";
-import { applyFilters } from "../logic/applicationFilters.js";
+import { applyFilters } from "../../logic/applicationFilters.js";
 import { renderStatusChart } from "./render/uiRender.js";
 
 const uiState = {

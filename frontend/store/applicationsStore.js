@@ -1,42 +1,23 @@
 /*
 Persistência em memória
-
-Nota:
-Este módulo será substituído por uma camada de persistência real
-(API / Base de Dados) sem impacto no resto do sistema.
 */
-
-const USE_MOCK_DATA = true;
 let applications = [];
 let nextId = 0;
 
-export async function initStore() {
-  const file = USE_MOCK_DATA
-    ? "./data/applications.mock.json"
-    : "./data/applications.real.json";
-
-  const res = await fetch(file);
-  const data = await res.json();
-
+export function initStore(data) {
+  nextId = 0;
   applications = data.map((app) => ({
     ...app,
     id: nextId++,
   }));
 }
-
-/*
-export async function getApplicationsNew() {
-  const res = await fetch("http://localhost:3000/api/applications");
-  return await res.json();
-}
-*/
 // --- leitura ---
 export function getApplications() {
   return applications;
 }
 
-export function getApplicationById(id) {
-  return applications.find((app) => app.id === id) || null;
+export function getApplicationByFilter(filter) {
+  return applications.find((app) => app.hasOwnProperty(filter) || null);
 }
 
 // --- escrita ---

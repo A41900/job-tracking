@@ -18,9 +18,13 @@ function openAddApplicationModal() {
   <div class="modal-overlay">
     <div class="modal">
       <form id="add-application-form">
+      <h1>Application Form</h1>
         <input id="company" placeholder="Company" required />
+        <input id="seniority" placeholder="Seniority" required/>
+        <input id="position" placeholder="Position" required/>
         <input id="role" placeholder="Role" required />
         <input id="url" placeholder="URL" />
+       
 
         <button type="submit">Add</button>
         <button type="button" id="close-modal">Cancel</button>
@@ -54,9 +58,17 @@ async function onSubmit(e) {
   const company = document.getElementById("company").value;
   const role = document.getElementById("role").value;
   const url = document.getElementById("url").value;
+  const seniority = document.getElementById("seniority").value;
+  const position = document.getElementById("position").value;
 
   try {
-    const newApplication = await createApplication({ company, role, url });
+    const newApplication = await createApplication({
+      company,
+      role,
+      url,
+      seniority,
+      position,
+    });
 
     addApplication(newApplication);
     onApplicationCreated();

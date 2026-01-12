@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.json(getApplications());
+  res.status(201).json(getApplications());
 });
 
 export default router;
