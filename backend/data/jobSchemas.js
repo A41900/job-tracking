@@ -28,21 +28,30 @@ export const JOB_APPLICATION_SCHEMA = `{
 }`;
 
 export const JOB_ANALYSIS_SCHEMA = `{
-  "JobAnalysis": {
-    "alignment": {
-      "overall": 0.0,
-      "strongMatches": ["string"],
-      "partialMatches": ["string"]
+  jobSchema: {
+    alignment: {
+      overall: 0.0,
+      strongMatches: ["string"],
+      partialMatches: ["string"]
     },
 
-    "gaps": ["string"],
+    gaps: {
+      expectedForLevel: ["string"],
+      relevantToRole: ["string"]
+    },
 
-    "riskFlags": ["string"],
+    riskProfile: {
+      technical: ["string"],
+      emotional: ["string"],
+      structural: ["string"]
+    },
 
-    "effortEstimate": "low | medium | high",
+    effortEstimate: "low | medium | high",
 
-    "marketSignal": "junior-friendly | stretch | misaligned",
+    marketSignal: "junior-friendly | stretch | misaligned",
 
-    "analysisNotes": "string"
+    fitSummary: "string",
+
+    analysisNotes: "string"
   }
 }`;
