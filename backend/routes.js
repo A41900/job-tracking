@@ -1,32 +1,56 @@
 import express from "express";
-import { addApplication, getApplications } from "./store.js";
+import { getAll, update, remove } from "./store.js";
+import { createApplication } from "./service.js";
+import { ZodError } from "zod";
 
-const router = express.Router();
+const routes = express.Router();
 
-router.post("/", (req, res) => {
-  const { company, role, url } = req.body;
+routes.post("/", createApplicationHandler);
+routes.get("/", getApplicationsHandler);
+routes.get("/:id", getApplicationsHandler);
+routes.put("/", updateApplicationHandler);
+routes.delete("/", deleteApplicationHandler);
 
-  if (!company || !role) {
-    return res.status(400).json({
-      error: "company and role are required",
-    });
+export default routes;
+
+// POST /applications
+export function createApplicationHandler(req, res) {
+  try {
+    const app = createApplication(req.body);
+    res.status(201).json(app);
+  } catch (err) {
+    if (err instanceof ZodError) {
+      return res.status(400).json({
+        error: "Invalid data",
+        details: err.errors,
+      });
+    }
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+// GET /applications
+function getApplicationsHandler(req, res) {
+  res.json(getAll());
+}
+
+// PUT /applications/:id
+function updateApplicationHandler(req, res) {
+  const updated = updateApplication(req.params.id, req.body);
+
+  if (!updated) {
+    return res.status(404).json({ error: "Application not found" });
   }
 
-  const application = addApplication({
-    company,
-    role,
-    url: url || "",
-    status: "applied",
-    appliedAt: new Date().toISOString().split("T")[0],
-    confirmationReceived: false,
-    notes: [],
-  });
+  res.json(updated);
+}
 
-  res.status(201).json(application);
-});
+// DELETE /applications/:id
+function deleteApplicationHandler(req, res) {
+  const ok = delete req.params.id;
 
-router.get("/", (req, res) => {
-  res.status(201).json(getApplications());
-});
+  if (!ok) {
+    return res.status(404).json({ error: "Application not found" });
+  }
 
-export default router;
+  res.status(204).send();
+}
