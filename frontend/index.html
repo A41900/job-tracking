@@ -55,28 +55,10 @@
         </div>
         <div class="filters">
           Filters:
-          <select id="filter-status">
-            <option value="" disabled selected hidden>Status</option>
-            <option value="applied">Applied</option>
-            <option value="under_review">Under review</option>
-            <option value="interview">Interview</option>
-            <option value="rejected">Rejected</option>
-          </select>
-
-          <select id="filter-remote">
-            <option value="" disabled selected hidden>Type</option>
-            <option value="remote">Remote</option>
-            <option value="hybrid">Hybrid</option>
-            <option value="onsite">Onsite</option>
-          </select>
-
-          <select id="filter-position">
-            <option value="" disabled selected hidden>Position</option>
-          </select>
-
-          <select id="filter-company">
-            <option value="" disabled selected hidden>Company</option>
-          </select>
+          <select class="dropdown" data-filter="status"></select>
+          <select class="dropdown" data-filter="remoteType"></select>
+          <select class="dropdown" data-filter="position"></select>
+          <select class="dropdown" data-filter="company"></select>
 
           <button id="filterBtn">Filter</button>
           <button id="clearBtn">Clear</button>

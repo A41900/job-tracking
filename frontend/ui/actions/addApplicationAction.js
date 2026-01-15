@@ -20,7 +20,12 @@ function openAddApplicationModal() {
       <form id="add-application-form">
       <h1>Application Form</h1>
         <input id="company" placeholder="Company" required />
-        <input id="seniority" placeholder="Seniority" required/>
+        <select id="seniority" required>
+          <option value="intern">Intern</option>
+          <option value="junior">Junior</option>
+          <option value="mid">Mid</option>
+          <option value="senior">Senior</option>
+        </select>
         <input id="position" placeholder="Position" required/>
         <input id="role" placeholder="Role" required />
         <input id="url" placeholder="URL" />

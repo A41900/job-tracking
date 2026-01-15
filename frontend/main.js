@@ -1,17 +1,17 @@
-import { getApplications, initStore } from "./store/applicationsStore.js";
+import { initStore, getApplications } from "./store/applicationsStore.js";
+import { initFiltersUI } from "./ui/inputs/filterFromUI.js";
+import { initUIController } from "./ui/uiController.js";
 import { setLayoutListeners } from "./ui/inputs/layoutSelectorUI.js";
-import { initFilterUI } from "./ui/inputs/filterFromUI.js";
-import { updateUI } from "./ui/uiController.js";
-import { renderButtons } from "./ui/render/uiRender.js";
 import { initAddApplicationAction } from "./ui/actions/addApplicationAction.js";
 import { fetchApplications } from "./api/applicationsApi.js";
 
 const data = await fetchApplications();
 initStore(data);
 
-renderButtons(getApplications());
-initFilterUI();
+// init static UI
+initFiltersUI(getApplications());
 setLayoutListeners();
 initAddApplicationAction();
 
-updateUI();
+// start UI logic
+initUIController();

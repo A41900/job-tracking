@@ -1,29 +1,34 @@
-import { setFilters, resetFilters } from "../uiController.js";
+export function initFiltersUI(apps) {
+  const dropdowns = document.querySelectorAll(".dropdown");
 
-const MAP = {
-  status: "filter-status",
-  remoteType: "filter-remote",
-  position: "filter-position",
-  company: "filter-company",
-};
+  dropdowns.forEach((select) => {
+    const field = select.dataset.filter;
+    if (!field) return;
 
-export function initFilterUI() {
-  document.getElementById("filterBtn").addEventListener("click", () => {
-    setFilters(readFiltersFromUI());
-  });
+    const values = new Set();
+    apps.forEach((app) => app[field] && values.add(app[field]));
 
-  document.getElementById("clearBtn").addEventListener("click", () => {
-    resetFilters();
+    select.innerHTML = `
+      <option value="" disabled selected hidden>${field}</option>
+    `;
+
+    values.forEach((value) => {
+      select.innerHTML += `<option value="${value}">${value}</option>`;
+    });
   });
 }
 
-function readFiltersFromUI() {
-  const values = {};
-
-  Object.entries(MAP).forEach(([key, id]) => {
-    const el = document.getElementById(id);
-    values[key] = el ? el.value : "";
+export function readFiltersFromUI() {
+  const filters = {};
+  document.querySelectorAll(".dropdown").forEach((select) => {
+    const key = select.dataset.filter;
+    if (key) filters[key] = select.value || "";
   });
+  return filters;
+}
 
-  return values;
+export function clearFilterUI() {
+  document
+    .querySelectorAll(".dropdown")
+    .forEach((select) => (select.selectedIndex = 0));
 }
