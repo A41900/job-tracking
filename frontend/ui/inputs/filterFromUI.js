@@ -6,14 +6,25 @@ export function initFiltersUI(apps) {
     if (!field) return;
 
     const values = new Set();
-    apps.forEach((app) => app[field] && values.add(app[field]));
+    apps.forEach((app) => {
+      if (app[field]) values.add(app[field]);
+    });
 
-    select.innerHTML = `
-      <option value="" disabled selected hidden>${field}</option>
-    `;
+    select.textContent = "";
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.hidden = true;
+    placeholder.textContent = field;
+    select.appendChild(placeholder);
 
     values.forEach((value) => {
-      select.innerHTML += `<option value="${value}">${value}</option>`;
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
     });
   });
 }
