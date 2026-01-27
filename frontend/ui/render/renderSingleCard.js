@@ -8,6 +8,7 @@ let currentAppId = null;
 /* ========================================================= */
 
 export function renderSingleApplication(appId) {
+  document.body.classList.add("modal-open");
   currentAppId = appId;
   const app = getApplicationById(appId);
   const single = document.getElementById("container-single");
@@ -51,6 +52,7 @@ export function renderSingleApplication(appId) {
   closeBtn.onclick = () => {
     isEditMode = false;
     single.classList.add("hidden");
+    document.body.classList.remove("modal-open");
   };
 
   actions.append(isEditMode ? saveBtn : editBtn, closeBtn);
@@ -342,4 +344,10 @@ function normalizeText(value) {
   if (value === null || value === undefined) return "";
   if (Array.isArray(value)) return value.join("\n");
   return String(value).trim();
+}
+
+export function exitSingleView() {
+  const single = document.getElementById("container-single");
+  single.classList.add("hidden");
+  document.body.classList.remove("modal-open");
 }

@@ -38,7 +38,7 @@ export function create(data) {
   };
   applications.push(application);
   save(applications);
-  return applications;
+  return application;
 }
 
 export function getActiveApplications() {

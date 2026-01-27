@@ -5,8 +5,7 @@ import { applyFilters } from "../../logic/applicationFilters.js";
 import { readFiltersFromUI } from "./inputs/filterFromUI.js";
 import { sortApplications } from "../../logic/sortApplications.js";
 import { createApplication } from "../api/applicationsApi.js";
-import { fetchApplications } from "../api/applicationsApi.js";
-import { initStore } from "../store/applicationsStore.js";
+import { addApplication } from "../store/applicationsStore.js";
 
 const uiState = {
   layout: null,
@@ -33,11 +32,11 @@ export function setFilters(filters) {
 
 document.addEventListener("application:create", async (e) => {
   try {
-    await createApplication(e.detail);
-    const apps = await fetchApplications();
-    initStore(apps);
-    updateUI();
-
+    const created = await createApplication(e.detail);
+    if (!created || created.id == null) {
+      throw new Error("Backend returned application without id");
+    }
+    addApplication(created);
     updateUI();
   } catch (err) {
     console.error("Erro ao criar candidatura:", err);

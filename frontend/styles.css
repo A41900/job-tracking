@@ -632,3 +632,7 @@ select {
 .pill-input {
   margin-top: 8px;
 }
+
+body.modal-open {
+  overflow: hidden;
+}

@@ -14,12 +14,12 @@ export function loadTheme() {
     document.body.classList.add("dark");
   }
 
-  updateThemeButton(); // 👈 sincroniza botão no load
+  updateThemeButton();
 }
 
 export function toggleTheme() {
   const isDark = document.body.classList.toggle("dark");
   localStorage.setItem("theme", isDark ? "dark" : "light");
 
-  updateThemeButton(); // 👈 atualiza botão após toggle
+  updateThemeButton();
 }

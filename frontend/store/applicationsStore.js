@@ -1,12 +1,7 @@
 let applications = [];
-let nextId = 0;
 
 export function initStore(data) {
-  nextId = 0;
-  applications = data.map((app) => ({
-    ...app,
-    id: nextId++,
-  }));
+  applications = [...data];
 }
 
 export function getApplications() {
@@ -14,7 +9,7 @@ export function getApplications() {
 }
 
 export function getApplicationById(id) {
-  return applications.find((app) => app.id === Number(id)) || null;
+  return applications.find((app) => String(app.id) === String(id)) || null;
 }
 
 export function getApplicationByFilter(filter) {
@@ -23,7 +18,6 @@ export function getApplicationByFilter(filter) {
 
 export function addApplication(app) {
   applications.push(app);
-  return app;
 }
 
 export function updateApplication(id, updates) {

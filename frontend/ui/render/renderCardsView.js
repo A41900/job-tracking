@@ -5,6 +5,10 @@ export function renderCards(applications, root) {
 }
 
 function renderCard(app) {
+  if (app.id == null) {
+    console.warn("Application sem id, ignorada:", app);
+    return document.createDocumentFragment(); // não renderiza nada
+  }
   const div = document.createElement("div");
   div.className = "application-card";
   div.dataset.id = app.id;

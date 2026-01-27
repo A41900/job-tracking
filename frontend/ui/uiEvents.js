@@ -2,7 +2,10 @@ import { updateUI, setLayout } from "./uiController.js";
 import { setSort } from "../logic/sortApplications.js";
 import { clearFilterUI } from "./inputs/filterFromUI.js";
 import { toggleTheme } from "./theme.js";
-import { renderSingleApplication } from "./render/renderSingleCard.js";
+import {
+  renderSingleApplication,
+  exitSingleView,
+} from "./render/renderSingleCard.js";
 
 export function initUIEvents() {
   console.log("UI EVENTS FILE LOADED");
@@ -32,6 +35,7 @@ function onGlobalClick(e) {
     e.target === document.getElementById("container-single")
   ) {
     exitSingleView();
+    updateUI();
     return;
   }
 
@@ -52,7 +56,7 @@ function onGlobalClick(e) {
   }
 
   const card = e.target.closest(".application-card");
-  if (card) {
+  if (card && card.dataset.id) {
     renderSingleApplication(card.dataset.id);
     return;
   }
@@ -66,10 +70,4 @@ function onGlobalClick(e) {
       : "Hide notes";
     return;
   }
-}
-
-function exitSingleView() {
-  const single = document.getElementById("container-single");
-  single.classList.add("hidden");
-  updateUI();
 }

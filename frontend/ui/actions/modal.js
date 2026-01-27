@@ -420,7 +420,12 @@ async function onSubmit(e) {
   }
 
   const application = collectApplicationFromForm();
-  createApplication(application);
+
+  document.dispatchEvent(
+    new CustomEvent("application:create", {
+      detail: application,
+    }),
+  );
 
   closeModal();
 }
