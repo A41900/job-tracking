@@ -1,4 +1,4 @@
-const USE_BACKEND = true;
+const USE_BACKEND = false;
 export const ENABLE_EXTRACTION = false;
 
 export async function fetchApplications333() {
