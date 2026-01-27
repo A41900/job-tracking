@@ -134,6 +134,16 @@ This approach keeps the extraction capability present and evolvable within the c
 
 ---
 
+## Phase 13 — Validation as a debugging and design tool
+
+As persistence and richer data flows were introduced, validation became critical. Zod was added to the backend to enforce schema constraints and prevent invalid data from being written to storage.
+
+Early failures revealed a conceptual mismatch rather than a tooling issue. Fields marked as optional were receiving null values from the frontend, which Zod does not accept by default. This surfaced an important distinction between absence and nullability. Schemas were updated to explicitly allow null where appropriate, combined with defaults to ensure a consistent persisted state.
+
+Validation also evolved into a debugging tool. Instead of generic error messages, validation failures were reformatted into readable logs that clearly identify the failing field and the reason. This reduced ambiguity, accelerated debugging, and made backend behavior easier to reason about.
+
+---
+
 ## Author
 
 Beatriz Andrade

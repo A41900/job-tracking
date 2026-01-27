@@ -1,6 +1,3 @@
-/*
-Persistência em memória
-*/
 let applications = [];
 let nextId = 0;
 
@@ -11,16 +8,19 @@ export function initStore(data) {
     id: nextId++,
   }));
 }
-// --- leitura ---
+
 export function getApplications() {
   return applications;
+}
+
+export function getApplicationById(id) {
+  return applications.find((app) => app.id === Number(id)) || null;
 }
 
 export function getApplicationByFilter(filter) {
   return applications.find((app) => app.hasOwnProperty(filter) || null);
 }
 
-// --- escrita ---
 export function addApplication(app) {
   applications.push(app);
   return app;

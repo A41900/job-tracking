@@ -1,8 +1,25 @@
 import { z } from "zod";
 
+const SignalsSchema = z.object({
+  workPace: z.enum(["unclear", "slow", "moderate", "fast"]).optional(),
+  autonomyLevel: z.enum(["unclear", "low", "medium", "high"]).optional(),
+  technicalBreadth: z
+    .enum(["unclear", "narrow", "moderate", "broad"])
+    .optional(),
+  roleClarity: z.enum(["unclear", "clear", "mixed", "vague"]).optional(),
+  deliveryPressure: z.enum(["unclear", "low", "medium", "high"]).optional(),
+
+  environmentSignals: z.array(z.string()).optional().default([]),
+  interpretationNotes: z.string().optional().default(""),
+});
+
 export const JobApplicationSchema = z.object({
   company: z.string().min(1),
   role: z.string().min(1),
+  isActive: z.boolean().default(true),
+  archivedReason: z
+    .enum(["timeout", "rejected", "withdrawn", "offer_accepted"])
+    .optional(),
 
   url: z.string().optional().default(""),
   position: z.string().optional().default(""),
@@ -16,17 +33,17 @@ export const JobApplicationSchema = z.object({
     .default("intern"),
 
   employmentType: z
-    .enum(["full_time", "part_time", "freelance", "contract"])
-    .optional()
-    .default("full_time"),
+    .enum(["full_time", "part_time", "freelance", "contract", "unknown"])
+    .nullish()
+    .default("unknown"),
+
+  remoteType: z
+    .enum(["remote", "hybrid", "onsite", "unknown"])
+    .nullish()
+    .default("unknown"),
 
   applicationLanguage: z.string().optional().default("English"),
   location: z.string().optional().default(""),
-
-  remoteType: z
-    .enum(["remote", "hybrid", "onsite"])
-    .optional()
-    .default("remote"),
 
   source: z.string().optional().default("Other"),
   platform: z.string().optional().default(""),
@@ -34,7 +51,7 @@ export const JobApplicationSchema = z.object({
 
   appliedAt: z
     .string()
-    .optional()
+    .nullish()
     .default(() => new Date().toISOString().split("T")[0]),
 
   status: z
@@ -52,4 +69,6 @@ export const JobApplicationSchema = z.object({
   confirmationReceived: z.boolean().optional().default(false),
 
   notes: z.array(z.string()).optional().default([]),
+
+  signals: SignalsSchema.optional().default(null),
 });

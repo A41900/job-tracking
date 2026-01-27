@@ -1,31 +1,41 @@
-export const JOB_APPLICATION_SCHEMA = `{
-  JobApplication: {
-    company: "string",
-    url: "string",
+export const JOB_APPLICATION_SCHEMA = `
+{
+    "company": "string",
+    "url": "string",
 
-    position: "string",
-    role: "string",
-    area: ["string"],
-    skills: ["string"],
+    "position": "string",
+    "role": "string",
+    "seniority": "intern | junior | mid | senior",
 
-    seniority: "intern | junior | mid | senior",
-    employmentType: "full_time | part_time | freelance | contract",
+    "area": ["string"],
+    "skills": ["string"],
 
-    applicationLanguage: "English | Portuguese | Other",
-    location: "string",
-    remoteType: "remote | hybrid | onsite",
+    "employmentType": "full_time | part_time | freelance | contract",
+    "applicationLanguage": "English | Portuguese | Other | unknown",
+    "location": "string",
+    "remoteType": "remote | hybrid | onsite | unknown",
 
-    source: "LinkedIn | Website | Referral | Other",
-    platform: "string",
-    submissionMethod: "linkedin_easy_apply | company_form | email | referral",
+    "source": "LinkedIn | Website | Referral | Other | unknown",
+    "platform": "string",
+    "submissionMethod": "linkedin_easy_apply | company_form | email | referral | unknown",
 
-    appliedAt: "YYYY-MM-DD",
-    status: "draft | applied | under_review | interview | rejected | offer",
-    confirmationReceived: "true | false",
+    "status": "draft",
+    "appliedAt": null,
+    "confirmationReceived": false,
 
-    notes: ["string"],
-  },
-}`;
+    "notes": ["string"],
+
+    "signals": {
+      "workPace": "slow | moderate | fast | unclear",
+      "autonomyLevel": "low | medium | high | unclear",
+      "technicalBreadth": "narrow | moderate | broad | unclear",
+      "roleClarity": "clear | mixed | vague | unclear",
+      "deliveryPressure": "low | medium | high | unclear",
+      "environmentSignals": ["string"],
+      "interpretationNotes": "string"
+    }
+}
+`;
 
 export const JOB_ANALYSIS_SCHEMA = `{
   jobSchema: {

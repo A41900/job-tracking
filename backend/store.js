@@ -1,21 +1,19 @@
 import fs from "fs";
-import { applications as seed } from "./data/applications.seed.js";
-
 const FILE = "./data/applications.private.json";
 
 function load() {
   if (!fs.existsSync(FILE)) {
     // primeira vez: cria o ficheiro com o seed
-    fs.writeFileSync(FILE, JSON.stringify(seed, null, 2));
-    return [...seed];
+    fs.writeFileSync(FILE, JSON.stringify([], null, 2));
+    return [];
   }
 
   const content = fs.readFileSync(FILE, "utf-8");
 
   if (!content.trim()) {
     // ficheiro existe mas está vazio
-    fs.writeFileSync(FILE, JSON.stringify(seed, null, 2));
-    return [...seed];
+    fs.writeFileSync(FILE, JSON.stringify([], null, 2));
+    return [];
   }
 
   // caso normal: usa os dados já gravados
@@ -43,8 +41,8 @@ export function create(data) {
   return applications;
 }
 
-export function getById(id) {}
+export function getActiveApplications() {
+  return applications.filter((app) => app.isActive);
+}
 
 export function update(id, data) {}
-
-export function remove(id) {}
