@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
-import applicationRouters from "./routes.js";
+import applicationsRoutes from "./routes/applications.js";
+import extractionRoutes from "./routes/extraction.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/applications", applicationRouters);
+
+app.use("/applications", applicationsRoutes);
+app.use("/extraction", extractionRoutes);
 
 export default app;

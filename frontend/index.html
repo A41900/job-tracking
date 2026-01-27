@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="job-application-modal.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
@@ -12,53 +13,34 @@
 
   <body>
     <aside class="sidebar">
-      <nav>
-        <a href="#">Overview</a>
-        <a href="#">Applications</a>
-        <a href="#" class="disabled">Calendar</a>
+      <nav class="side-nav">
+        <button id="toggle-theme">🌙 Dark mode</button>
       </nav>
     </aside>
-
     <main class="main">
-      <header class="topbar">
-        <div class="topbar-left">
-          <h1>Overview</h1>
-          <button id="add-application-btn">Add application</button>
-        </div>
+      <section class="dashboard">
+        <div class="action-bar">
+          <div class="view-toggle" role="radiogroup" aria-label="View mode">
+            <label class="toggle-btn">
+              <input type="radio" name="view" value="cards" checked />
+              ⬜ Cards
+            </label>
 
-        <div class="topbar-right">
-          <div class="user-menu">
-            <button class="user-trigger" aria-haspopup="true">
-              <img src="avatar.png" alt="User avatar" />
-            </button>
-
-            <div class="user-dropdown hidden">
-              <a href="#">Profile</a>
-              <a href="#">Settings</a>
-              <a href="#">Logout</a>
-            </div>
+            <label class="toggle-btn">
+              <input type="radio" name="view" value="table" />
+              ☰ Table
+            </label>
+          </div>
+          <div id="add-job">
+            <button id="add-application-btn">+ Add Application</button>
           </div>
         </div>
-      </header>
 
-      <section class="dashboard">
-        <div class="view-toggle" role="radiogroup" aria-label="View mode">
-          <label class="toggle-btn">
-            <input type="radio" name="view" value="cards" checked />
-            ⬜ Cards
-          </label>
-
-          <label class="toggle-btn">
-            <input type="radio" name="view" value="table" />
-            ☰ Table
-          </label>
-        </div>
         <div class="filters">
           Filters:
           <select class="dropdown" data-filter="status"></select>
+          <select class="dropdown" data-filter="seniority"></select>
           <select class="dropdown" data-filter="remoteType"></select>
-          <select class="dropdown" data-filter="position"></select>
-          <select class="dropdown" data-filter="company"></select>
 
           <button id="filterBtn">Filter</button>
           <button id="clearBtn">Clear</button>
@@ -66,10 +48,10 @@
         <div id="status-chart"></div>
         <div id="container-table"></div>
         <div id="container-cards"></div>
+        <div id="container-single" class="hidden"></div>
       </section>
-      <section id="modal-root"></section>
     </main>
-
+    <div id="modal-root"></div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

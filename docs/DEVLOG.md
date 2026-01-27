@@ -118,9 +118,26 @@ This separation ensures predictable behavior across environments while keeping t
 
 ---
 
+## Phase 9 — Migration of Job Analysis and extraction as a service
+
+At this stage of the project, I decided to migrate another application I had been developing in parallel.
+
+Alongside the Job Tracker, I had built a separate Job Analysis tool using OpenAI to extract structured, factual information from job descriptions, such as seniority, role characteristics, and qualitative signals. The purpose of this tool was to reduce friction during application creation by allowing a job description to be analyzed and converted into structured data that the user could then accept or reject.
+
+Rather than rebuilding this logic inside the Job Tracker, the decision was to integrate it as-is and reframe job analysis as a service. The extraction logic became a backend capability, and its UI was embedded into the existing “Add Application” modal, aligning it with the core application flow.
+
+This phase was primarily about integration and reuse, not feature expansion. Existing prompts, extraction logic, and form structure were reused, with the main change being conceptual: job analysis transitioned from an independent tool to a supporting service within the Job Tracker.
+
+Because this feature relies on a private OpenAI API key, it is intentionally disabled in public deployments. Access is restricted through explicit safeguards at both the UI and backend levels, ensuring that no external requests are made outside of local development environments.
+
+This approach keeps the extraction capability present and evolvable within the codebase while protecting sensitive credentials. In future iterations, this mechanism will be extended with user authentication and authorization (e.g. Passport), allowing controlled access to the feature under an admin or privileged user model.
+
+---
+
 ## Author
 
-Beatriz Andrade  
+Beatriz Andrade
 Software Engineering Student
 
 </div>
+```
