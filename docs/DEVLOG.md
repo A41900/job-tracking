@@ -159,6 +159,7 @@ A theme system based on CSS custom properties was introduced. Core colors were c
 ## Author
 
 Beatriz Andrade
+
 Software Engineering Student
 
 </div>
