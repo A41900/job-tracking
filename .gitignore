@@ -15,3 +15,5 @@ backend/data/applications.seed.js
 
 # private scripts
 backend/testJobAnalysis.js
+
+openai-usage.log

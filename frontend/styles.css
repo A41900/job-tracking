@@ -1,51 +1,165 @@
+/* =========================================================
+   LIGHT THEME
+========================================================= */
 :root {
+  --bg-main: #ffffff;
+  --bg-surface: #f6f7f9;
+  --bg-surface-strong: #e5e7eb;
+
+  --text-main: #111827;
+  --text-muted: #6b7280;
+
+  --border-color: #d1d5db;
+
+  --accent: #cc4ca5;
+
+  /* status – pastel (LIGHT ONLY) */
   --status-applied: #8fb3e0;
-  --status-under-review: #c3a6d9;
+  --status-under_review: #c3a6d9;
   --status-interview: #f5d77a;
   --status-offer: #9ed9b1;
   --status-rejected: #e6a4a4;
   --status-draft: #aeabab;
+
+  /* add button */
+  --add-btn-bg: #000000;
+  --add-btn-text: #ffffff;
+
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --card-hover-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-#chart-legend {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  color: #555;
+/* =========================================================
+   DARK THEME
+========================================================= */
+body.dark {
+  --bg-main: #020617;
+  --bg-surface: #020617;
+  --bg-surface-strong: #0f172a;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border-color: #1e293b;
+
+  --accent: #d12d9d;
+
+  /* status – saturated (DARK ONLY) */
+  --status-applied: #3b82f6;
+  --status-under_review: #a855f7;
+  --status-interview: #eab308;
+  --status-offer: #22c55e;
+  --status-rejected: #ef4444;
+  --status-draft: #64748b;
+
+  /* add button */
+  --add-btn-bg: #ffffff;
+  --add-btn-text: #000000;
+
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --card-hover-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+/* =========================================================
+   BASE
+========================================================= */
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 14px;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
+.hidden {
+  display: none;
+  pointer-events: none;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+#title {
+  background-color: var(--bg-surface-strong);
+  color: var(--text-main);
+  text-align: center;
+  font-size: 30px;
+  font-family: Verdana, sans-serif;
+  margin-bottom: 100px;
+  letter-spacing: 10px;
+}
+
+/* =========================================================
+   DASHBOARD LAYOUT
+========================================================= */
 .dashboard {
   display: grid;
   grid-template-columns: 260px auto 1fr;
   grid-template-areas:
-    ".     view    filters"
-    "chart content content";
+    ".     actionBar  filters"
+    "chart content  content";
   gap: 24px;
   margin: 30px;
 }
 
-.view-toggle {
-  grid-area: view;
+.action-bar {
+  grid-area: actionBar;
   display: flex;
   align-items: center;
   gap: 10px;
   margin-left: 15px;
 }
 
+button {
+  padding: 8px 16px;
+  min-height: 36px;
+  font-size: 13px;
+  font-weight: 500;
+
+  background: var(--bg-surface-strong);
+  color: var(--text-main);
+
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   ADD APPLICATION BUTTON
+========================================================= */
+#add-application-btn {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--add-btn-bg);
+  color: var(--add-btn-text);
+  border: none;
+}
+
+#add-application-btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   FILTERS / CONTROLS
+========================================================= */
 .filters {
   grid-area: filters;
   display: flex;
@@ -54,79 +168,29 @@
   gap: 16px;
 }
 
-/* linha 2 */
-#status-chart {
-  grid-area: chart;
-}
-
-#container-table,
-#container-cards {
-  grid-area: content;
-  width: 100%;
-}
-
-#container-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  border: 1px solid #e5e5e5b6;
-  border-radius: 10%;
-}
-
-thead th {
-  text-align: left;
-  font-weight: 600;
-  color: #625e5e;
-  background-color: #c0bdbd;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid #837a7a;
-}
-
-tbody td {
-  padding: 0.6rem 0.75rem;
-  vertical-align: top;
-  border: 1px solid #e5e5e5;
-}
-
-tbody tr:hover {
-  background-color: #fafafa;
-}
-
-body {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
-  font-size: 14px;
-  color: #111;
-}
-
-.hidden {
-  display: none;
-}
-
-button,
-select {
+.topbar button,
+.filters button,
+.filters select {
   height: 30px;
   padding: 0 12px;
   font-size: 12px;
   border-radius: 6px;
   cursor: pointer;
-  border: 1px solid #bbb;
-  background: #f5f5f5;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
 }
 
 button:active {
-  background-color: #ddd;
+  background-color: var(--bg-surface-strong);
 }
 
+/* =========================================================
+   VIEW TOGGLE
+========================================================= */
 .view-toggle {
   display: inline-flex;
-  border: 1px solid #bbb;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -134,7 +198,8 @@ button:active {
 .toggle-btn {
   padding: 8px 14px;
   cursor: pointer;
-  background: #f5f5f5;
+  background: var(--bg-surface);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -145,74 +210,425 @@ button:active {
 }
 
 .toggle-btn:has(input:checked) {
-  background: #ddd;
-  color: rgb(7, 7, 7);
+  background: var(--bg-surface-strong);
 }
 
+/* =========================================================
+   CHART
+========================================================= */
+#status-chart {
+  grid-area: chart;
+}
+
+#chart-legend {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+#container-table,
+#container-cards {
+  grid-area: content;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+}
+
+thead th {
+  text-align: left;
+  font-weight: 600;
+  background-color: var(--bg-surface-strong);
+  color: var(--text-main);
+  padding: 0.6rem 0.75rem;
+}
+
+tbody td {
+  padding: 0.6rem 0.75rem;
+  vertical-align: top;
+  border: 1px solid var(--border-color);
+}
+
+tbody tr:hover {
+  background-color: var(--bg-surface);
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+#container-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: stretch; /* garante colunas alinhadas */
+}
+
+/* -------------------------
+   CARDS
+-------------------------- */
 .application-card {
+  height: 240px;
+  max-width: 320px;
+
   border-radius: 12px;
   padding: 16px;
-  background: #fff;
-  border: 2px solid #e6e6e6;
-  margin: 10px;
-  min-height: 20rem;
-  max-width: 15rem;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
 }
 
+.card-header {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+}
+.application-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0 0;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.application-card .company {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  font-size: 13px;
+  color: var(--text-main);
+  opacity: 0.9;
+  margin-top: 6px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-signals {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: auto; /* empurra para o fundo */
+}
 .application-card:hover {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-hover-shadow);
   transform: translateY(-2px);
-  transition: all 0.2s ease;
 }
 
+.card-applied {
+  border-color: var(--status-applied);
+}
+.card-under_review {
+  border-color: var(--status-under_review);
+}
+.card-interview {
+  border-color: var(--status-interview);
+}
+.card-offer {
+  border-color: var(--status-offer);
+}
+.card-rejected {
+  border-color: var(--status-rejected);
+}
+.card-draft {
+  border-color: var(--status-draft);
+}
+
+/* =========================================================
+   STATUS PILLS
+========================================================= */
 .status-pill {
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  color: white;
+  text-transform: capitalize;
 }
 
 .status-applied {
   background: var(--status-applied);
 }
-
 .status-under_review {
-  background: var(--status-under-review);
+  background: var(--status-under_review);
 }
-
 .status-interview {
   background: var(--status-interview);
 }
-
 .status-offer {
   background: var(--status-offer);
 }
-
 .status-rejected {
   background: var(--status-rejected);
 }
-
 .status-draft {
   background: var(--status-draft);
 }
 
-.modal-overlay {
+/* =========================================================
+   SINGLE APPLICATION OVERLAY
+========================================================= */
+#container-single {
   position: fixed;
-  inset: 0; /* top:0 right:0 bottom:0 left:0 */
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 9999;
+  inset: 0;
+  z-index: 1000;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  background: var(--overlay-bg);
+  backdrop-filter: blur(2px);
 }
 
-.modal {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  min-width: 320px;
-  max-width: 90%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+.single-card {
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+
+  padding: 28px;
+
+  background: var(--bg-surface);
+  color: var(--text-main);
+
+  border-radius: 16px;
+  border: 2px solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  overflow-y: auto;
+}
+
+.single-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.single-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.back-btn {
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+
+#container-single.hidden {
+  display: none;
+}
+
+.single-card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.single-card h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.single-card h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  margin: 0 0 16px;
+  padding-bottom: 15px;
+
+  color: var(--text-muted);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.single-card section {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* APENAS p que têm strong + span ou strong + a */
+.single-card p:has(> strong) {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+}
+
+.single-card p strong {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.single-card p span,
+.single-card p a {
+  color: var(--text-main);
+}
+
+.single-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.single-card a:hover {
+  text-decoration: underline;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-list {
+  margin: 12px 0 20px;
+}
+
+.tag {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+
+  background: var(--bg-surface-strong);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.notes-list {
+  padding-left: 18px;
+  margin: 8px 0 0;
+}
+
+.notes-list li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.edit-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+
+  background: var(--bg-surface-strong);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: var(--bg-surface);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.close-btn:hover {
+  color: var(--text-main);
+}
+
+.single-card .status-pill {
+  font-size: 12px;
+  padding: 5px 12px;
+}
+
+.inline-input,
+.inline-textarea,
+select {
+  background: var(--bg-surface-strong);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.inline-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+.section-text {
+  width: 100%;
+  display: block;
+  line-height: 1.6;
+}
+
+.pill-remove {
+  background: none;
+  border: none;
+  margin-left: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.pill-remove:hover {
+  opacity: 1;
+}
+
+.pill-input {
+  margin-top: 8px;
 }
