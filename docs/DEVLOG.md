@@ -152,7 +152,7 @@ UI event handling was centralized through global event delegation, routing all h
 
 Rendering was fully refactored to eliminate innerHTML and rely exclusively on explicit DOM construction (createElement, textContent) with whitelisted dynamic classes. This removed XSS risks by construction and made rendering deterministic and auditable.
 
-A theme system based on CSS custom properties was introduced. Core colors were centralized and light/dark modes are now toggled via a single class on the <body>, allowing consistent theming without structural changes.
+A theme system based on CSS custom properties was introduced. Core colors were centralized and light/dark modes are now toggled via a single class, allowing consistent theming without structural changes.
 
 ---
 
@@ -162,4 +162,3 @@ Beatriz Andrade
 Software Engineering Student
 
 </div>
-```
