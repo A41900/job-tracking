@@ -1,5 +1,3 @@
-import { STATUS_COLORS } from "./uiRender.js";
-
 export function renderStatusChart(applications) {
   const root = document.getElementById("status-chart");
   root.innerHTML = "";
@@ -46,18 +44,18 @@ function renderDonut(counts, total, root) {
 
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
-      "circle"
+      "circle",
     );
 
     circle.setAttribute("cx", size / 2);
     circle.setAttribute("cy", size / 2);
     circle.setAttribute("r", radius);
     circle.setAttribute("fill", "none");
-    circle.setAttribute("stroke", STATUS_COLORS[status] || "#ccc");
+    circle.setAttribute("stroke", `var(--status-${status})`);
     circle.setAttribute("stroke-width", strokeWidth);
     circle.setAttribute(
       "stroke-dasharray",
-      `${value} ${circumference - value}`
+      `${value} ${circumference - value}`,
     );
     circle.setAttribute("stroke-dashoffset", -offset);
     circle.setAttribute("transform", `rotate(-90 ${size / 2} ${size / 2})`);
@@ -74,6 +72,7 @@ function renderDonut(counts, total, root) {
   text.setAttribute("dominant-baseline", "middle");
   text.setAttribute("font-size", "28");
   text.setAttribute("font-weight", "600");
+  text.setAttribute("fill", "var(--text-main)");
   text.textContent = total;
 
   const sub = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -81,7 +80,7 @@ function renderDonut(counts, total, root) {
   sub.setAttribute("y", size / 2 + 22);
   sub.setAttribute("text-anchor", "middle");
   sub.setAttribute("font-size", "12");
-  sub.setAttribute("fill", "#666");
+  sub.setAttribute("fill", "var(--text-muted)");
   sub.textContent = "Total";
 
   svg.append(text, sub);
@@ -93,9 +92,7 @@ function renderLegend(counts, root) {
     item.className = "legend-item";
 
     item.innerHTML = `
-      <span class="legend-dot" style="background:${
-        STATUS_COLORS[status]
-      }"></span>
+    <span class="legend-dot status-${status}"></span>
       <span>${status.replace("_", " ")}</span>
     `;
 
