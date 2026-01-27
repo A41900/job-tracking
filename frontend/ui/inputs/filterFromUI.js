@@ -1,26 +1,43 @@
-export function initFiltersUI(apps) {
-  const dropdowns = document.querySelectorAll(".dropdown");
+export const FILTER_OPTIONS = {
+  status: [
+    "applied",
+    "under_review",
+    "interview",
+    "rejected",
+    "archived",
+    "draft",
+  ],
+  seniority: ["intern", "junior", "junior_plus", "mid", "senior"],
+  remoteType: ["remote", "hybrid", "onsite", "unknown"],
+};
 
-  dropdowns.forEach((select) => {
+export function bindFiltersUI(onChange) {
+  document.querySelectorAll(".dropdown").forEach((select) => {
+    select.addEventListener("change", () => {
+      onChange(readFiltersFromUI());
+    });
+  });
+}
+
+export function initFiltersUI() {
+  document.querySelectorAll(".dropdown").forEach((select) => {
     const field = select.dataset.filter;
     if (!field) return;
 
-    const values = new Set();
-    apps.forEach((app) => {
-      if (app[field]) values.add(app[field]);
-    });
+    const options = FILTER_OPTIONS[field];
+    if (!options) return;
 
     select.textContent = "";
 
     const placeholder = document.createElement("option");
     placeholder.value = "";
+    placeholder.textContent = field;
     placeholder.disabled = true;
     placeholder.selected = true;
     placeholder.hidden = true;
-    placeholder.textContent = field;
     select.appendChild(placeholder);
 
-    values.forEach((value) => {
+    options.forEach((value) => {
       const option = document.createElement("option");
       option.value = value;
       option.textContent = value;

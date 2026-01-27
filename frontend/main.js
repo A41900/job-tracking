@@ -1,17 +1,20 @@
-import { initStore, getApplications } from "./store/applicationsStore.js";
+import { initStore } from "./store/applicationsStore.js";
 import { initFiltersUI } from "./ui/inputs/filterFromUI.js";
-import { initUIController } from "./ui/uiController.js";
-import { setLayoutListeners } from "./ui/inputs/layoutSelectorUI.js";
-import { initAddApplicationAction } from "./ui/actions/addApplicationAction.js";
+import { initAddApplicationAction } from "./ui/actions/modal.js";
 import { fetchApplications } from "./api/applicationsApi.js";
+import { initUIEvents } from "./ui/uiEvents.js";
+import { updateUI } from "./ui/uiController.js";
+import { loadTheme } from "./ui/theme.js";
 
-const data = await fetchApplications();
+loadTheme();
+let data = [];
+try {
+  data = await fetchApplications();
+} catch (err) {
+  console.error("Error to fetch applications:", err.message);
+}
 initStore(data);
-
-// init static UI
-initFiltersUI(getApplications());
-setLayoutListeners();
+initFiltersUI();
 initAddApplicationAction();
-
-// start UI logic
-initUIController();
+initUIEvents();
+updateUI();

@@ -7,9 +7,7 @@ export function applyFilters(applications, filters) {
       !filters.remoteType.includes(app.remoteType)
     )
       return false;
-    if (filters.position.length && !filters.position.includes(app.position))
-      return false;
-    if (filters.company.length && !filters.company.includes(app.company))
+    if (filters.seniority.length && !filters.seniority.includes(app.seniority))
       return false;
     return true;
   });

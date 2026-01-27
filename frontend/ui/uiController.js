@@ -2,34 +2,21 @@ import { getApplications } from "../store/applicationsStore.js";
 import { renderApplications } from "./render/uiRender.js";
 import { renderStatusChart } from "./render/chartRender.js";
 import { applyFilters } from "../../logic/applicationFilters.js";
-import { readFiltersFromUI, clearFilterUI } from "./inputs/filterFromUI.js";
+import { readFiltersFromUI } from "./inputs/filterFromUI.js";
+import { sortApplications } from "../../logic/sortApplications.js";
+import { createApplication } from "../api/applicationsApi.js";
+import { fetchApplications } from "../api/applicationsApi.js";
+import { initStore } from "../store/applicationsStore.js";
 
 const uiState = {
   layout: null,
+  filters: {},
 };
-
-export function initUIController() {
-  document
-    .getElementById("filterBtn")
-    .addEventListener("click", onApplyFilters);
-  document.getElementById("clearBtn").addEventListener("click", onClearFilters);
-
-  updateUI();
-}
-
-function onApplyFilters() {
-  updateUI();
-}
-
-function onClearFilters() {
-  clearFilterUI();
-  updateUI();
-}
 
 export function updateUI() {
   const filters = readFiltersFromUI();
-  const apps = applyFilters(getApplications(), filters);
-
+  let apps = applyFilters(getApplications(), filters);
+  apps = sortApplications(apps);
   renderApplications(apps, uiState.layout);
   renderStatusChart(apps);
 }
@@ -39,6 +26,21 @@ export function setLayout(layout) {
   updateUI();
 }
 
-export function onApplicationCreated() {
+export function setFilters(filters) {
+  uiState.filters = filters;
   updateUI();
 }
+
+document.addEventListener("application:create", async (e) => {
+  try {
+    await createApplication(e.detail);
+    const apps = await fetchApplications();
+    initStore(apps);
+    updateUI();
+
+    updateUI();
+  } catch (err) {
+    console.error("Erro ao criar candidatura:", err);
+    alert("Erro ao criar candidatura");
+  }
+});
